@@ -13,20 +13,29 @@ width, height = maxx - minx, maxy - miny
 
 dwg = svgwrite.Drawing(
     f'{file_path}/counties.svg',
-    size=(width, height),
-    viewBox=f'{minx} {0 - miny} {maxx - minx} {maxy - miny}'
+    #size=(width, height),
+    height='100%',
+    width='100%',
+    viewBox=f'0 {0 - (maxy-miny)} {maxx - minx} {maxy - miny}'
 )
+
+def translate(coord: float, type: str):
+    if type == 'x':
+        return (coord * scale) - minx
+    if type == 'y':
+        return (0-(coord * scale - miny))
+
 
 
 def add_path(coordinates: list):
-    path_data = "M" + " ".join([f"{x},{0 - y}" for x, y in coordinates]) + "Z"
+    path_data = "M" + " ".join([f"{translate(x, 'x')},{translate(y, 'y')}" for x, y in coordinates]) + "Z"
     path = dwg.path(
         d=path_data,
         fill='none',
         stroke='black',
-        style=f'stroke-width:{0.5 / scale}; stroke-linejoin:bevel',
+        class_='path'
     )
-    path.scale(scale)
+    #path.scale(scale)
     # path.scale(1,-1)
     dwg.add(path)
 
@@ -42,4 +51,5 @@ for feature in gdf.iterrows():
         for coordinates in coordinates_list:
             add_path(coordinates)
 
+dwg.add_stylesheet('map.css', title='styles')
 dwg.save()
