@@ -7,22 +7,30 @@ from os.path import isfile, join
 
 class Map:
     def __init__(self, continent:str):
+        self.continent = continent
         self.basepath = dotenv_values(".env")["FILE_PATH"]
-        self.datapath = f'{self.basepath}/{self.continent}'
-        self.continent: continent
+        self.scale = 1
+        self.datapath = join(self.basepath, self.continent)
         self.gdfs = self.get_gdfs()
-        self.minx, self.miny, self.maxx, self.miny = self.get_bounds()
-        self.scale = 100
+        self.minx, self.miny, self.maxx, self.maxy = self.get_bounds()
         self.dwg = self.init_drawing()
 
     def get_gdfs(self) -> list:
-        files = [f for f in listdir(self.basepath) if isfile(join(self.basepath, f))]
-        return [geopandas.read_file(f) for f in files]
+        print(self.datapath)
+        gdfs = []
+        for file in listdir(self.datapath):
+            if file.endswith('.geojson'):
+                gdf = geopandas.read_file(join(self.datapath, file))
+                gdfs.append({
+                    'name': file.split('.')[0],
+                    'gdf': gdf.to_crs('epsg:2163')
+                })
+        return gdfs
 
     def get_bounds(self):
-        minx, miny, maxx, maxy = 0
+        minx = miny = maxx = maxy = 0
         for gdf in self.gdfs:
-            _minx, _miny, _maxx, _maxy = gdf.total_bounds
+            _minx, _miny, _maxx, _maxy = [x * self.scale for x in gdf['gdf'].total_bounds]
             minx = _minx if _minx < minx else minx
             miny = _miny if _miny < miny else miny
             maxx = _maxx if _maxx > maxx else maxx
@@ -30,26 +38,52 @@ class Map:
         return [minx, miny, maxx, maxy]
 
     def get_viewbox(self):
-        return f'{self.minx} {0 - self.miny} {self.maxx - self.minx} {self.maxy - self.miny}'
+        return f'0 {0 - (self.maxy - self.miny)} {self.maxx - self.minx} {self.maxy - self.miny}'
 
     def init_drawing(self):
         return svgwrite.Drawing(
             f'{self.basepath}/{self.continent}.svg',
-            size=(self.maxx - self.minx, self.maxy - self.miny),
-            viewBox=self.get_viewbox()
+            height='100%',
+            width='100%',
+            viewBox=self.get_viewbox(),
+            id='map'
         )
 
-    def add_path(self, coordinates: list):
-        path_data = "M" + " ".join([f"{x},{0 - y}" for x, y in coordinates]) + "Z"
-        path = map.path(
+    def trans(self, coord: float, type: str):
+        if type == 'x':
+            return (coord * self.scale) - self.minx
+        if type == 'y':
+            return (0 - (coord * self.scale - self.miny))
+
+    def add_path(self, coords: list, lyr):
+        path_data = "M" + " ".join([f"{self.trans(x, 'x')},{self.trans(y, 'y')}" for x, y in coords]) + "Z"
+        path = self.dwg.path(
             d=path_data,
-            fill='none'
+            fill='none',
         )
         path.scale(self.scale)
-        self.dwg.add(path)
+        lyr.add(path)
 
-    def add_layer(self):
 
+    def add_layer(self, gdf):
+        lyr = svgwrite.container.Group(class_='path', id=gdf['name'])
+        for feature in gdf['gdf'].iterrows():
+            print(feature)
+            geometry = feature[1]['geometry']
+            if geometry.geom_type == 'Polygon':
+                coordinates = geometry.exterior.coords
+                self.add_path(coordinates, lyr)
+            if geometry.geom_type == 'MultiPolygon':
+                coordinates_list = [list(x.exterior.coords) for x in geometry.geoms]
+                for coordinates in coordinates_list:
+                    self.add_path(coordinates, lyr)
+        self.dwg.add(lyr)
 
     def save(self):
-        dwg = self.init_drawing()
+        for gdf in self.gdfs:
+            self.add_layer(gdf)
+        self.dwg.add_stylesheet('map.css', title='styles')
+        self.dwg.save()
+
+map = Map('north-america')
+map.save()
