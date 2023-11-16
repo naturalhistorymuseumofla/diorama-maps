@@ -1,0 +1,11 @@
+.path {
+  stroke: black;
+}
+
+path {
+  stroke-linejoin: bevel;
+}
+
+.example-ranges {
+  fill:green;
+}

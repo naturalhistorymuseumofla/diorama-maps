@@ -4,7 +4,8 @@ from dotenv import dotenv_values
 
 file_path = dotenv_values(".env")["FILE_PATH"]
 
-gdf = geopandas.read_file(f'{file_path}/counties.geojson')
+gdf = geopandas.read_file(f'{file_path}/north-america/north-america.json')
+gdf.to_crs(gdf.crs, '9820').plot()
 gdf.plot()
 
 scale = 100
@@ -12,7 +13,7 @@ minx, miny, maxx, maxy = [x * scale for x in gdf.total_bounds]
 width, height = maxx - minx, maxy - miny
 
 dwg = svgwrite.Drawing(
-    f'{file_path}/counties.svg',
+    f'{file_path}/north-america/states.svg',
     #size=(width, height),
     height='100%',
     width='100%',
