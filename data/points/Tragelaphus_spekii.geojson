@@ -1,0 +1,14 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "Diorama name": "Sitatunga",
+        "Continent": "Africa",
+        "Scientific name": "Tragelaphus spekii"
+      },
+      "geometry": { "type": "Point", "coordinates": [30.76575, -3.843814] }
+    }
+  ]
+}

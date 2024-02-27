@@ -1,0 +1,15 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "Diorama name": "Mountain goat",
+        "Continent": "NorthAmerica",
+        "Scientific name": "Oreamnos americanus"
+      },
+      "geometry": { "type": "Point", "coordinates": [-141.84115689132443, 61.68022973976008] }
+    }
+  ]
+}
+ 
