@@ -1,0 +1,17 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "Diorama name": "Bongo",
+        "Continent": "Africa",
+        "Scientific name": "Tragelaphus eurycerus"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [37.22440347, -0.365368046]
+      }
+    }
+  ]
+}

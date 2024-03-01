@@ -1,0 +1,14 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "Diorama name": "Pronghorn",
+        "Continent": "NorthAmerica",
+        "Scientific name": "Antilocapra americana"
+      },
+      "geometry": { "type": "Point", "coordinates": [-111.664394, 35.378887] }
+    }
+  ]
+}

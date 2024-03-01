@@ -1,0 +1,14 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "Diorama name": "African savanna elephant",
+        "Continent": "Africa",
+        "Scientific name": "Loxodonta africana"
+      },
+      "geometry": { "type": "Point", "coordinates": [39.442418, -2.58678] }
+    }
+  ]
+}

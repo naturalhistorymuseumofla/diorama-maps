@@ -1,0 +1,14 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "Diorama name": "River otter",
+        "Continent": "NorthAmerica",
+        "Scientific name": "Lontra canadensis"
+      },
+      "geometry": { "type": "Point", "coordinates": [-84.392492, 30.502562] }
+    }
+  ]
+}

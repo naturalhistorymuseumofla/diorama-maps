@@ -1,0 +1,14 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "Diorama name": "Margay",
+        "Continent": "NorthAmerica",
+        "Scientific name": "Leopardus wiedii"
+      },
+      "geometry": { "type": "Point", "coordinates": [-106.059503, 23.0] }
+    }
+  ]
+}

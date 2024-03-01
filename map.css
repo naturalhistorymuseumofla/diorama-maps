@@ -1,0 +1,42 @@
+path {
+  vector-effect: non-scaling-stroke;
+}
+
+g {
+  stroke-linejoin: bevel;
+  fill: none;
+}
+
+.north-america g, .africa g {
+  fill: #e7e7e7;
+}
+
+.usa-states, .mx-states, .ca-provinces {
+  fill: none;
+  stroke: #000000;
+  stroke-width: 0.1pt;
+}
+
+.countries {
+  stroke: #000000;
+  stroke-width: 0.5pt;
+  fill: none;
+}
+
+.great-lakes {
+  stroke: #000000;
+  stroke-width: 0.5pt;
+}
+
+.great-lakes g {
+    fill: white;
+}
+
+#Greenland, #Cuba, #Haiti, #Dominican-Republic, #Puerto-Rico, #Jamaica, #The-Bahamas, .countries g {
+    fill: #e7e7e7;
+}
+
+.range g {
+  fill: #8e847c;
+}
+

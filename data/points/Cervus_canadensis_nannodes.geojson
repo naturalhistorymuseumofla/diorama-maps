@@ -1,0 +1,14 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "Diorama name": "Elk (formerly American wapiti)",
+        "Continent": "NorthAmerica",
+        "Scientific name": "Cervus canadensis nannodes"
+      },
+      "geometry": { "type": "Point", "coordinates": [-119.954696, 35.177921] }
+    }
+  ]
+}
