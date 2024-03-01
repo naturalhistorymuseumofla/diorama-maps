@@ -29,10 +29,10 @@ g {
 }
 
 .great-lakes g {
-    fill: white;
+    fill: black;
 }
 
-#Greenland, #Cuba, #Haiti, #Dominican-Republic, #Puerto-Rico, #Jamaica, #The-Bahamas, .countries g {
+.countries g {
     fill: #e7e7e7;
 }
 

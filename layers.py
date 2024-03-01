@@ -20,20 +20,16 @@ symbol = Symbol(
 def get_layers(name:str, continent: str, level=0):
     north_america_layers = [
         Layer(
+            name='north-america',
+            path=get_data('north-america/continent.geojson')
+        ),
+        Layer(
             name='countries',
             path=get_data('north-america/countries.geojson')
         ),
         Layer(
             name='usa-states',
-            path=get_data('north-america/usa-states.geojson')
-        ),
-        Layer(
-            name='mx-states',
-            path=get_data('north-america/mexico-states.geojson')
-        ),
-        Layer(
-            name='ca-provinces',
-            path=get_data('north-america/canada-provinces.geojson')
+            path=get_data('north-america/provinces_states.geojson')
         ),
         Layer(
             name='great-lakes',

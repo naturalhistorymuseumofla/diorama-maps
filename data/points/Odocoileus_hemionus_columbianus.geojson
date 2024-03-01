@@ -1,1 +1,14 @@
-{"type": "FeatureCollection", "features": [{"type": "Feature", "properties": {"Diorama name": "Columbian black-tailed deer", "Continent": "NorthAmerica", "Scientific name": "Odocoileus hemionus columbianus"}, "geometry": {"type": "Point", "coordinates": [-124.0, 41.3]}}]}
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "Diorama name": "Columbian black-tailed deer",
+        "Continent": "NorthAmerica",
+        "Scientific name": "Odocoileus hemionus columbianus"
+      },
+      "geometry": { "type": "Point", "coordinates": [-123.95673580054323, 41.17273621014917] }
+    }
+  ]
+} 
