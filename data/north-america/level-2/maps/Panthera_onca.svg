@@ -33,10 +33,6 @@ g {
     fill: black;
 }
 
-.countries g {
-    fill: #e7e7e7;
-}
-
 .range g {
   fill: #8e847c;
 }

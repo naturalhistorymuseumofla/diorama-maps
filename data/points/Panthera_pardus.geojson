@@ -1,0 +1,14 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "Diorama name": "Leopard",
+        "Continent": "Africa",
+        "Scientific name": "Panthera pardus"
+      },
+      "geometry": { "type": "Point", "coordinates": [35.261019, 4.189774] }
+    }
+  ]
+}
