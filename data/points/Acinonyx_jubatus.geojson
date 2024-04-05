@@ -1,0 +1,14 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "Diorama name": "Cheetah",
+        "Continent": "Africa",
+        "Scientific name": "Acinonyx jubatus"
+      },
+      "geometry": { "type": "Point", "coordinates": [34.849700, -3.338070] }
+    }
+  ]
+}
